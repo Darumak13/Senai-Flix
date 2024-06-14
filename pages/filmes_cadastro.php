@@ -1,28 +1,3 @@
-<?php
-
-    include 'config.php';
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){
-
-        $titulo = $_POST['titulo'];
-        $descricao = $_POST['descricao'];
-        $ano_lancamento = $_POST['ano_lancamento'];
-        $genero = $_POST['genero'];
-        $classificacao = $_POST['classificacao'];
-        $data_cadastro = date("Y-m-d H:i:s");;
-        $data_atualizacao = date("Y-m-d H:i:s");;
-        $status = 1;
-
-        $sql = "INSERT INTO clientes_flix(nome, cpf, endereco, bairro, cidade, estado, cep, email, telefone, data_cadastro, data_atualizacao, status)VALUES('$nome', '$cpf', '$endereco', '$bairro', '$cidade', '$estado', '$cep', '$email', '$telefone', '$data_cadastro', '$data_atualizacao', status)";
-
-        if($conn -> query($sql)== TRUE){
-            echo"Cadastro realizado com suceso!";
-        } else {
-            echo "Erro ao inserir no registro".$conn->error;
-        }   
-    }
-    $resultado_clientes_flix = $conn -> query("SELECT * FROM clientes_flix WHERE status=1");
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,37 +6,35 @@
     <title>Cadastro</title>
 </head>
 <body>
-    <h2>Cadastro de Clientes</h2>
-    <form method="post">
-        <label for="nome">Nome:</label>
-        <input type="text" name="nome" placeholder="Informe o seu nome"> 
+    <h2>Cadastro de filmes</h2>
+    <form action="pages/filmes_cadastro_salvar.php" method="post">
+        <label for="titulo">Titulo:</label>
+        <input type="text" name="titulo" placeholder="Informe o titulo do filme"> 
 
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="Digite o seu e-mail"> 
+        <label for="descricao">Descrição</label>
+        <input type="text" id="descricao" name="descricao" placeholder="Faça uma breve descrição do filme"> 
 
-        <label for="cpf">CPF</label>
-        <input type="text" name="cpf" id="cpf" placeholder="Informe o seu CPF"><br>
+        <label for="ano_lancamento">Ano de Lançamento</label>
+        <input  type="number" min="1900" max="2099" step="1" value="2024" name="ano_lancamento" id="ano_lancamento"><br>
 
-        <label for="endereco">Endereço</label>
-        <input type="text" id="endereco" name="endereco" placeholder="Informe o seu endereço"> 
+        <label for="genero">Gênero</label>
+            <select name="genero" id="genero">
+                <option value="terror">Terror</option>
+                <option value="comedia">Comédia</option>
+                <option value="acao">Ação</option>
+                <option value="suspense">Suspense</option>
+            </select>
 
-        <label for="bairro">Bairro</label>
-        <input type="text" id="bairro" name="bairro" placeholder="Infome o seu bairro"> <br>
-
-        <label for="cidade">Cidade</label>
-        <input type="text" id="cidade" name="cidade" placeholder="Informe a sua cidade"> 
-
-        <label for="estado">Estado</label>
-        <input type="text" id="estado" name="estado" placeholder="Informe o seu estado"> <br>
-
-        <label for="cep">CEP</label>
-        <input type="text" id="cep" name="cep"  placeholder="Informe o seu cep">
-
-        <label for="telefone">Telefone</label>
-        <input type="text" id="telefone" name="telefone"><br>
+        <label for="classificacao">Classificação</label>
+            <select name="classificacao" id="classificacao" placeholder="Informe a classificação do filme">
+                <option value="terror">Livre</option>
+                <option value="comedia">10</option>
+                <option value="acao">14</option>
+                <option value="suspense">18+</option>
+            </select>
 
         <label for="data_cadastro">Data de Cadastro</label>
-        <input type="date" id="data_cadastro" name="data_cadastro">
+        <input type="date" id="data_cadastro" name="data_cadastro"> 
 
         <br>
         <br>

@@ -1,26 +1,3 @@
-<?php
-
-    include 'config.php';
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){
-
-        $id_cliente = $_GET['id_cliente'];
-        $plano = $_POST['plano'];
-        $data_inicio = $_POST['data_inicio'];
-        $data_fim = $_POST['data_fim'];
-        $data_cadastro = date("Y-m-d H:i:s");;
-        $data_atualizacao = date("Y-m-d H:i:s");;
-        $status = 1;
- 
-        $sql = "INSERT INTO assinaturas(id_cliente, plano, data_inicio, data_fim, data_cadastro, data_atualizacao, status)VALUES('$id_cliente', '$plano', '$data_inicio', '$data_fim', '$data_cadastro', '$data_atualizacao', status)";
-
-        if($conn -> query($sql)== TRUE){
-            echo"Cadastro realizado com suceso!";
-        } else {
-            echo "Erro ao inserir no registro".$conn->error;
-        }   
-    }
-    $resultado_assinaturas = $conn -> query("SELECT * FROM assinaturas WHERE status=1");
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,8 +7,8 @@
     <title>Cadastro</title>
 </head>
 <body>
-    <h2>Cadastro de Clientes</h2>
-    <form method="post">
+    <h2>Cadastro de Assinaturas</h2>
+    <form action="pages/assinaturas_cadastro_salvar.php" method="post">
         <label for="plano">Plano:</label>
         <input type="text" name="plano" placeholder="Informe o plano"> 
 
@@ -48,5 +25,6 @@
         <br>
         <input type="submit" value="Enviar">
     </form>
+    <a href="index.php?pagina=assinaturas_listar">Voltar para a lista</a>
 </body>
 </html>
