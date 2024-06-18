@@ -28,7 +28,7 @@
 </head>
 <body>
 <h2>Editar Cadastro do cliente</h2>
-    <form method="post">
+    <form action="pages/clientes_edita_salvar.php" method="post">
         Nome: <input type="text" name="nome" value="<?php echo $linha['nome']?>"> <br>
         CPF: <input type="text" name="cpf" value="<?php echo $linha['cpf']?>"> <br>
         Endereço: <input type="text" name="endereco" value="<?php echo $linha['endereco']?>"> <br>
@@ -40,9 +40,10 @@
         Telefone: <input type="text" name="telefone" value="<?php echo $linha['telefone']?>"> <br> 
         Data Cadastro: <input type="date" name="data_cadastro" value="<?php echo $linha['data_cadastro']?>"> <br>
         Data Atualização: <input type="date" name="data_atualizacao" value="<?php echo $linha['data_atualizacao']?>"> <br>
+        <input type="hidden" id="id" name="id" value="<?php echo $linha['id']?>"/>
         <input type="submit" value="Atualizar"> <br>
     </form>
     <br>
-    <a href="index.php?pagina=assinaturas_listar">Voltar para a lista</a>
+    <a href="index.php?pagina=clientes_listar">Voltar para a lista</a>
 </body>
 </html>

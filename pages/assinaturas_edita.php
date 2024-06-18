@@ -2,21 +2,33 @@
 
     include 'config.php';
 
-    $id = $_GET['id'];
     if(!isset($_GET['id'])) {
         echo"Usuario não informado";
         exit();
     }
+    
+    $id = $_GET['id'];
 
     $q = "SELECT * FROM assinaturas WHERE id='$id'";
-    $resultado = $conn->query($q);
+    $sql = "SELECT * FROM clientes_flix";
 
+    $resultado = $conn->query($q);
+    $resul = $conn -> query($sql);
+    
     if($resultado->num_rows <= 0){    
         echo"Usuário não encontrado";
         exit();
     }
     
+    if($resul->num_rows <= 0){    
+        echo"Usuário não encontrado";
+        exit();
+    }
+    
     $linha = $resultado->fetch_assoc();
+    $linha2 = $resul->fetch_assoc();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -28,8 +40,12 @@
 </head>
 <body>
 <h2>Editar Plano</h2>
-    <form method="post">
+    <form action="pages/assinaturas_edita_salvar.php" method="post">
         Plano: <input type="text" name="plano" value="<?php echo $linha['plano']?>"> <br>
+        <label for="plano">Cliente:</label>
+        <select name="id_cliente">
+            <option value="<?php echo $linha2['id']; ?>"><?php echo $linha2['nome']; ?></option>
+        </select> <br>
         Data Inicio: <input type="date" name="data_inicio" value="<?php echo $linha['data_inicio']?>"> <br>
         Data Fim: <input type="date" name="data_fim" value="<?php echo $linha['data_fim']?>"> <br>
         Data Cadastro: <input type="date" name="data_cadastro" value="<?php echo $linha['data_cadastro']?>"> <br>

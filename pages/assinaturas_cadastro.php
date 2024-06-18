@@ -1,4 +1,13 @@
 
+<?php
+include 'config.php';
+
+$sql = "SELECT * FROM clientes_flix ";
+
+$resultado = $conn -> query($sql);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +21,17 @@
         <label for="plano">Plano:</label>
         <input type="text" name="plano" placeholder="Informe o plano"> 
 
+        <label for="plano">Cliente:</label>
+        <select name="id_cliente">
+        <?php
+        while($linha = $resultado->fetch_assoc()){
+        ?>
+            <option value="<?php echo $linha['id']; ?>"><?php echo $linha['nome']; ?></option>
+        <?php
+        }
+        ?>
+        </select>
+        
         <label for="data_inicio">Data Inicio</label>
         <input type="date" id="data_inicio" name="data_inicio"> 
 

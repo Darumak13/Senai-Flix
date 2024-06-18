@@ -7,7 +7,7 @@
 </head>
 <body>
     <h2>Cadastro de filmes</h2>
-    <form action="pages/filmes_cadastro_salvar.php" method="post">
+    <form action="pages/filmes_cadastro_salvar.php" method="post" enctype="multipart/form-data">
         <label for="titulo">Titulo:</label>
         <input type="text" name="titulo" placeholder="Informe o titulo do filme"> 
 
@@ -32,9 +32,13 @@
                 <option value="acao">14</option>
                 <option value="suspense">18+</option>
             </select>
-
+        
         <label for="data_cadastro">Data de Cadastro</label>
         <input type="date" id="data_cadastro" name="data_cadastro"> 
+
+        <br>
+
+        <input type="file" id="foto" value="foto">
 
         <br>
         <br>
